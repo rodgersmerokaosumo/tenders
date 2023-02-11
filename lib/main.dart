@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tenders/features/auth/screens/auth_screen.dart';
+// ignore: unused_import
 import 'package:tenders/router.dart';
 import 'constants/global_variables.dart';
 

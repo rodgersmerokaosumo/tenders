@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+// ignore: unnecessary_import
 import 'package:flutter/widgets.dart';
 import 'package:tenders/features/auth/screens/auth_screen.dart';
 

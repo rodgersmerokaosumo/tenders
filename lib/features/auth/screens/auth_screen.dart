@@ -1,7 +1,10 @@
+// ignore_for_file: unused_field
+
 import 'package:flutter/material.dart';
 import 'package:tenders/common/widgets/custom_button.dart';
 import 'package:tenders/constants/global_variables.dart';
 import 'package:tenders/common/widgets/custom_textfield.dart';
+import 'package:tenders/features/auth/services/auth_service.dart';
 
 enum Auth {
   signin,
@@ -20,7 +23,7 @@ class _AuthScreenState extends State<AuthScreen> {
   Auth _auth = Auth.signup;
   final _signUpFormKey = GlobalKey<FormState>();
   final _signInFormKey = GlobalKey<FormState>();
-
+  final AuthService authservice = AuthService();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _nameController = TextEditingController();
@@ -33,6 +36,15 @@ class _AuthScreenState extends State<AuthScreen> {
     _nameController.dispose();
   }
 
+
+  void signUpUser(){
+    authservice.signUpUser(
+      context: context, 
+      email: _emailController.text, 
+      password: _passwordController.text, 
+      name: _nameController.text,
+      );
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -93,7 +105,11 @@ class _AuthScreenState extends State<AuthScreen> {
                           hintText: 'Password',
                         ),
                         const SizedBox(height: 10),
-                        CustomButton(text: 'Sign Up', onTap: () {})
+                        CustomButton(text: 'Sign Up', onTap: () {
+                          if(_signUpFormKey.currentState!.validate()){
+                            signUpUser();
+                          }
+                        })
                       ],
                     ),
                   ),
@@ -137,7 +153,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           hintText: 'Password',
                         ),
                         const SizedBox(height: 10),
-                        CustomButton(text: 'Sign Up', onTap: () {})
+                        CustomButton(text: 'Sign In', onTap: () {})
                       ],
                     ),
                   ),
